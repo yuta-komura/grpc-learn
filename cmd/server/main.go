@@ -9,6 +9,8 @@ import (
 	"os"
 	"os/signal"
 
+	"google.golang.org/grpc/reflection"
+
 	"google.golang.org/grpc"
 )
 
@@ -26,7 +28,10 @@ func main() {
 	// 3. gRPCサーバーにGreetingServiceを登録
 	hellopb.RegisterGreetingServiceServer(s, NewMyServer())
 
-	// 3. 作成したgRPCサーバーを、8080番ポートで稼働させる
+	// 4. サーバーリフレクションの設定
+	reflection.Register(s)
+
+	// 5. 作成したgRPCサーバーを、8080番ポートで稼働させる
 	go func() {
 		log.Printf("start gPRC server port: %v", port)
 		s.Serve(listener)
