@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	hellopb "grpc-learn/pkg/grpc"
+	hellopb "grpc-learn/pkg/grpc/api"
 	"log"
 	"net"
 	"os"
